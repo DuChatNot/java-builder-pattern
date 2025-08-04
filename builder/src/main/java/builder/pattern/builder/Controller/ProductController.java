@@ -8,6 +8,8 @@ import builder.pattern.builder.Services.ProductServiceImpl;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +37,11 @@ public class ProductController {
     public List<Product> getAllProducts(){
         return serv.showAllProducts();
     }
-    
 
+    @PostMapping("/build")
+    public ResponseEntity<Product> buildProduct(@RequestBody Product p){
+        serv.buildProduct(p);
+        return ResponseEntity.status(HttpStatus.CREATED).body(p);
+    }
 
 }

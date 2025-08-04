@@ -51,4 +51,9 @@ public class ProductServiceImpl {
         }
         return prods;
     }
+
+    public void buildProduct(Product p){
+        Product prod = factory.createProduct(p.getId(), p.getName(), p.getPrice(), p.getCategory());
+        dao.save(prod);
+    }
 }
